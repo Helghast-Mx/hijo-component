@@ -1,0 +1,65 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<dom-module id="hijo-elementos">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      paper-input{
+        margin-bottom: 20px; 
+      }
+    </style>
+  
+    
+    <paper-input 
+    label="Nombre"
+    value={{nombre}}
+    auto-validate
+    error-message='nombre incorrecto'
+    pattern= "^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ ]{3,30}$" 
+    char-counter maxlength="30"
+    >
+
+
+    </paper-input>
+    
+  
+  <paper-button raised on-click="addFn">Guardar</paper-button>
+  <paper-button raised>Borrar</paper-button>
+
+  
+
+
+  </template>
+
+  <script>
+   
+   
+
+
+    class HijoElementos extends Polymer.Element {
+      static get is() { return 'hijo-elementos'; }
+      static get properties() {
+        return {
+          nombre: {
+            type: String,
+            notify:true,
+            reflectToAttribute:true
+          }
+        };
+      }
+
+      addFn(){
+        this.dispatchEvent(new CustomEvent('save-elementos', 
+        {detail:this.nombre, bubbles:true, composed:true  }
+          ))
+      }
+
+    }
+
+
+    window.customElements.define(HijoElementos.is, HijoElementos);
+  </script>
+</dom-module>
