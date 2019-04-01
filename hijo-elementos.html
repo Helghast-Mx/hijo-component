@@ -27,7 +27,7 @@
     
   
   <paper-button raised on-click="addFn">Guardar</paper-button>
-  <paper-button raised>Borrar</paper-button>
+  <paper-button raised on-click="cancelFn">Borrar</paper-button>
 
   
 
@@ -52,8 +52,14 @@
       }
 
       addFn(){
-        this.dispatchEvent(new CustomEvent('save-elementos', 
+        this.dispatchEvent(new CustomEvent('save-custom-e', 
         {detail:this.nombre, bubbles:true, composed:true  }
+          ))
+      }
+
+      cancelFn(){
+        this.dispatchEvent(new CustomEvent('cancel-custom-e', 
+        {detail:'btn-cancel', bubbles:true, composed:true  }
           ))
       }
 
